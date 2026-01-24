@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-class PatientService {
+public class PatientService {
     private final PatientRepository patientRepository;
 
     PatientService(PatientRepository patientRepository) {
