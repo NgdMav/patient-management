@@ -1,0 +1,31 @@
+services:
+  patient-service-db:
+    image: postgres:latest
+    container_name: patient-service-db
+    ports:
+      - "5000:5432"
+    volumes:
+      - /home/mav/Documents/db_volumes/patient-service-db:/var/lib/postgresql
+    environment:
+      POSTGRES_USER: admin_user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+    networks:
+      - internal
+    restart: unless-stopped
+
+  patient-service:
+    image: ngdmav/patient-service:latest
+    container_name: patient-service
+    ports:
+      - "4000:4000"
+    depends_on:
+      - patient-service-db
+    networks:
+      - internal
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+networks:
+  internal:
+    driver: bridge
