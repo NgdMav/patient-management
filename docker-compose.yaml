@@ -26,6 +26,7 @@ services:
       - internal
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
 
 #    ./mvnw spring-boot:build-image "-Dspring-boot.build-image.imageName=ngdmav/billing-service"
   billing-service:
