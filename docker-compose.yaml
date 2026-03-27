@@ -49,12 +49,13 @@ services:
       - "4002:4002"
     depends_on:
       - kafka
+      - patient-service
     networks:
       - internal
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
-      - SPRING_KAFKA_CONSUMER_GROUP_ID=analytics-service
+      - SPRING_KAFKA_CONSUMER_GROUP_ID=analytics-service-debug
       - SPRING_KAFKA_CONSUMER_AUTO_OFFSET_RESET=earliest
 
   kafka:
