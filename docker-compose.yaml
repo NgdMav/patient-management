@@ -18,8 +18,8 @@ services:
   patient-service:
     image: ngdmav/patient-service:latest
     container_name: patient-service
-    ports:
-      - "4000:4000"
+#    ports:
+#      - "4000:4000"
     depends_on:
       - patient-service-db
       - kafka
@@ -54,6 +54,15 @@ services:
       - internal
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+
+#  ./mvnw spring-boot:build-image "-Dspring-boot.build-image.imageName=ngdmav/api-gateway"
+  api-gateway:
+    image: ngdmav/api-gateway:latest
+    container_name: api-gateway
+    ports:
+      - "4004:4004"
+    networks:
+      - internal
 
   kafka:
     image: apache/kafka
