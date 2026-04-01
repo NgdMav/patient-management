@@ -1,7 +1,6 @@
 package com.mav.authservice.service;
 
 import com.mav.authservice.dto.LoginRequestDTO;
-import com.mav.authservice.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
