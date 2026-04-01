@@ -16,12 +16,11 @@ public class AuthService {
     }
     
     public Optional<String> authenticate(LoginRequestDTO loginRequestDTO) {
-        Optional<String> token = userService
+        
+        return userService
                 .findByEmail(loginRequestDTO.getEmail())
                 .filter(u -> passwordEncoder.matches(loginRequestDTO.getPassword(),
                         u.getPassword()))
                 .map(u -> jwtUtil.generateToket(u.getEmail(), u.getRole()));
-        
-        return token;
     }
 }
