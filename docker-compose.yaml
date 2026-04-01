@@ -84,6 +84,22 @@ services:
       - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
       - KAFKA_OFFSETS_TOPIC_NUM_PARTITIONS=1
 
+
+  auth-service-db:
+    image: postgres:latest
+    container_name: auth-service-db
+    ports:
+      - "5001:5432"
+    volumes:
+      - /home/mav/Documents/db_volumes/auth-service-db:/var/lib/postgresql
+    environment:
+      POSTGRES_USER: admin_user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+    networks:
+      - internal
+    restart: unless-stopped
+
 networks:
   internal:
     driver: bridge
